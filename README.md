@@ -13,6 +13,12 @@ As of version 1.1, the hotkeys are as follows:
 
 You'll receive a popup message on startup if the fallback hotkeys are in use.
 
+## Support
+
+Please do not open issues asking for new features. This tool is designed to do one thing, which it already does.
+
+If you find bugs, please open an issue, but I have very little time for maintaining old projects so I can't guarantee anything.
+
 ## License
 
 This code is released under [MIT license](license.txt).

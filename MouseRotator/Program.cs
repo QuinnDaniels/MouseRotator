@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MouseInverter
+namespace MouseRotator
 {
 	internal static class Program
 	{

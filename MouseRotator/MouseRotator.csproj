@@ -6,12 +6,12 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{9FBE4024-7B5A-404A-85A0-3AC587C3AB90}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>MouseInverter</RootNamespace>
-    <AssemblyName>MouseInverter</AssemblyName>
+    <RootNamespace>MouseRotator</RootNamespace>
+    <AssemblyName>MouseRotator</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <StartupObject>MouseInverter.Program</StartupObject>
+    <StartupObject>MouseRotator.Program</StartupObject>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -54,6 +54,9 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>rotate-screen_102944.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
@@ -100,6 +103,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="rotate-screen_102944.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,7 +5,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-namespace MouseInverter
+namespace MouseRotator
 {
 	public class Hotkey : IMessageFilter
 	{

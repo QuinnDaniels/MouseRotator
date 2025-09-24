@@ -5,7 +5,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace MouseInverter.Properties
+namespace MouseRotator.Properties
 {
 	[GeneratedCode("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "10.0.0.0")]
 	[CompilerGenerated]

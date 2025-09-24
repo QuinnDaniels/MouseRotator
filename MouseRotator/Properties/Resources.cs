@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Resources;
 using System.Runtime.CompilerServices;
 
-namespace MouseInverter.Properties
+namespace MouseRotator.Properties
 {
 	//[CompilerGenerated]
 	//[DebuggerNonUserCode]

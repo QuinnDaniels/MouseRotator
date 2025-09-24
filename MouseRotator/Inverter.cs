@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace MouseInverter
+namespace MouseRotator
 {
     internal class Inverter
     {

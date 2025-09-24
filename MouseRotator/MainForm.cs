@@ -3,9 +3,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using MouseInverter.Properties;
+using MouseRotator.Properties;
 
-namespace MouseInverter
+namespace MouseRotator
 {
 	public partial class MainForm : Form
 	{

@@ -8,9 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace MouseInverter.Properties
 {
-	[CompilerGenerated]
-	[DebuggerNonUserCode]
-	[GeneratedCode("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+	//[CompilerGenerated]
+	//[DebuggerNonUserCode]
+	//[GeneratedCode("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
 	internal class Resources
 	{
 		internal Resources()

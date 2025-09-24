@@ -5,117 +5,112 @@ using System.Windows.Forms;
 
 namespace MouseInverter
 {
-	internal class Inverter
-	{
-		public Inverter(bool x, bool y)
-		{
-			this.invertX = x;
-			this.invertY = y;
-			this.pos = Cursor.Position;
-		}
+    internal class Inverter
+    {
+        public Inverter(bool rotate90, bool rotate270)
+        {
+            this.rotate90 = rotate90;
+            this.rotate270 = rotate270;
+            this.pos = Cursor.Position;
+        }
 
-		public bool Running
-		{
-			get
-			{
-				return this.running;
-			}
-		}
+        public bool Running
+        {
+            get
+            {
+                return this.running;
+            }
+        }
 
-		public bool InvertX
-		{
-			get
-			{
-				return this.invertX;
-			}
-			set
-			{
-				this.invertX = value;
-				if (this.InvertSettingsChanged != null)
-				{
-					this.InvertSettingsChanged(this, new EventArgs());
-				}
-			}
-		}
+        public bool Rotate90
+        {
+            get => this.rotate90;
+            set
+            {
+                this.rotate90 = value;
+                this.InvertSettingsChanged?.Invoke(this, EventArgs.Empty);
 
-		public bool InvertY
-		{
-			get
-			{
-				return this.invertY;
-			}
-			set
-			{
-				this.invertY = value;
-				if (this.InvertSettingsChanged != null)
-				{
-					this.InvertSettingsChanged(this, new EventArgs());
-				}
-			}
-		}
+            }
+        }
 
-		private void MouseLoop()
-		{
-			Thread.CurrentThread.IsBackground = true;
-			Thread.CurrentThread.Priority = ThreadPriority.Highest;
-			while (!this.exit)
-			{
-				Point position = Cursor.Position;
-				int x = (this.invertX ? (this.pos.X - (position.X - this.pos.X)) : position.X);
-				if (this.invertX)
-				{
-					if (x < 2)
-					{
-						x = 2;
-					}
-					if (x > Screen.FromPoint(position).Bounds.Right - 2)
-					{
-						x = Screen.FromPoint(position).Bounds.Right - 2;
-					}
-				}
-				int y = (this.invertY ? (this.pos.Y - (position.Y - this.pos.Y)) : position.Y);
-				if (this.invertY)
-				{
-					if (y < 2)
-					{
-						y = 2;
-					}
-					if (y > Screen.FromPoint(position).Bounds.Bottom - 2)
-					{
-						y = Screen.FromPoint(position).Bounds.Bottom - 2;
-					}
-				}
-				Cursor.Position = new Point(x, y);
-				this.pos = Cursor.Position;
-				Thread.Sleep(1);
-			}
-			this.exit = false;
-		}
+        public bool Rotate270
+        {
+            get => this.rotate270;
+            set
+            {
+                this.rotate270 = value;
+                this.InvertSettingsChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
-		public void Start()
-		{
-			this.pos = Cursor.Position;
-			this.running = true;
-			Thread thread = new Thread(new ThreadStart(this.MouseLoop)) { IsBackground = true };
-			thread.Start();
-		}
+        private void MouseLoop()
+        {
+            Thread.CurrentThread.IsBackground = true;
+            Thread.CurrentThread.Priority = ThreadPriority.Highest;
 
-		public void Stop()
-		{
-			this.running = false;
-			this.exit = true;
-		}
+            while (!this.exit)
+            {
+                Point currentPos = Cursor.Position;
+                int dx = currentPos.X - this.pos.X;
+                int dy = currentPos.Y - this.pos.Y;
 
-		private Point pos = Cursor.Position;
+                int newX = currentPos.X;
+                int newY = currentPos.Y;
 
-		private bool invertX;
+                if (rotate90 && !rotate270)
+                {
+                    // Rotate 90° CW: (dx, dy) -> (dy, -dx)
+                    newX = this.pos.X + dy;
+                    newY = this.pos.Y - dx;
+                }
+                else if (rotate270 && !rotate90)
+                {
+                    // Rotate 270° CW (90° CCW): (dx, dy) -> (-dy, dx)
+                    newX = this.pos.X - dy;
+                    newY = this.pos.Y + dx;
+                }
+                else
+                {
+                    // No rotation
+                    newX = currentPos.X;
+                    newY = currentPos.Y;
+                }
 
-		private bool invertY;
+                // Clamp to screen bounds
+                Rectangle bounds = Screen.FromPoint(currentPos).Bounds;
+                newX = Math.Max(bounds.Left + 2, Math.Min(bounds.Right - 2, newX));
+                newY = Math.Max(bounds.Top + 2, Math.Min(bounds.Bottom - 2, newY));
 
-		private bool running;
+                Cursor.Position = new Point(newX, newY);
+                this.pos = Cursor.Position;
 
-		private bool exit;
+                Thread.Sleep(1);
 
-		public EventHandler InvertSettingsChanged;
-	}
+            }
+
+            this.exit = false;
+        }
+
+        public void Start()
+        {
+            this.pos = Cursor.Position;
+            this.running = true;
+            Thread thread = new Thread(new ThreadStart(this.MouseLoop)) { IsBackground = true };
+            thread.Start();
+        }
+
+        public void Stop()
+        {
+            this.running = false;
+            this.exit = true;
+        }
+
+        private Point pos = Cursor.Position;
+        private bool rotate90;
+        private bool rotate270;
+        private bool running;
+        private bool exit;
+
+        public EventHandler InvertSettingsChanged;
+    }
 }

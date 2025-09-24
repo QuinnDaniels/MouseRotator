@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 
 [assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyTitle("MouseInverter")]
+[assembly: AssemblyTitle("MouseRotator")] // Modified: MouseInverter --> MouseRotator
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Polynomial")]

@@ -132,6 +132,7 @@ namespace MouseInverter
 			HandledEventArgs handledEventArgs = new HandledEventArgs(false);
 			if (this.Pressed != null)
 			{
+                Console.WriteLine(this.ToString());
 				this.Pressed(this, handledEventArgs);
 			}
 			return handledEventArgs.Handled;

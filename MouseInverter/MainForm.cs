@@ -46,7 +46,6 @@ namespace MouseInverter
 
 			this.hotkeyX.Pressed += delegate
 			{
-				//Console.WriteLine("hotkey pressed");
 				this.invert.Rotate90 = !this.invert.Rotate90;
 			};
 			this.hotkeyY.KeyCode = Keys.End; // Right; // Keys.F17; //Y --> Right	// MS PowerToys - Keyboard Remapper: Allow Chords; [Alt (right)] + [Right] > [Apps/Menu]
@@ -58,7 +57,6 @@ namespace MouseInverter
 
 			this.hotkeyY.Pressed += delegate
             {
-				//Console.WriteLine("hotkey pressed");
                 this.invert.Rotate270 = !this.invert.Rotate270;
             };
 
@@ -73,17 +71,6 @@ namespace MouseInverter
 				this.hotkeyY.Alt = false;
 				this.hotkeyX.Shift = false; // true
                 this.hotkeyY.Shift = false; // true
-
-
-				//if (!this.hotkeyX.Register(this) || !this.hotkeyY.Register(this))
-				//{
-				//    if (this.hotkeyX.Registered)
-				//        this.hotkeyX.Unregister();
-				//    if (this.hotkeyY.Registered)
-				//        this.hotkeyY.Unregister();
-
-				//    MessageBox.Show("Could not register Windows+Shift+Left/Right hotkeys.");
-				//}
 
 				if (!this.hotkeyX.Register(this))
 				{
